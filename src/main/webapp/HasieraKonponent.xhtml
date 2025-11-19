@@ -8,19 +8,14 @@
 <f:view>
 	<h:head>
 		<title>Rides aplikazioa</title>
-		<h:outputScript library="js" name="infoJavaScript.js" />
 	</h:head>
 	<h:body>
 		<h:form>
-			<h3>
-				Select Option
-			</h3>
-			<h:commandButton value="Create Ride"
-				onclick="showMessage('Ez dago definituta nora joan')">
-			</h:commandButton>
-			<h:commandButton value="Query Rides"
-				onclick="showMessage('Ez dago definituta nora joan')">
-			</h:commandButton>
+			<h3>Select Option</h3>
+
+			<h:commandButton value="Create Ride" action="1" />
+			<h:commandButton value="Query Rides" action="2" />
+
 		</h:form>
 	</h:body>
 </f:view>
