@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.omnifaces.cdi.ViewScoped;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
@@ -11,86 +13,71 @@ import jakarta.inject.Named;
 import businessLogic.BLFacade;
 import domain.Ride;
 
-@Named
-@RequestScoped
-public class QueryRidesBean {
+@Named("qrBean")
+@ViewScoped
+public class QueryRidesBean implements Serializable{
+	private BLFacade facadeBL;
+	private List<String> cities;
+	private List<String> cities2;
+	private String selectedCity;
+	private String selectedCity2;
+	private Date selectedDate;
+	private List<Ride> availableRides;
+
+	public Date getSelectedDate() { return selectedDate; }
+	public void setSelectedDate(Date selectedDate) { this.selectedDate = selectedDate; }
+
+	public List<Ride> getAvailableRides() { return availableRides; }
+	public String findRides() {
+	    System.out.println(">>> findRides() ejecutado");
+	    System.out.println("Parametro from = " + selectedCity);
+	    System.out.println("Parametro to   = " + selectedCity2);
+	    System.out.println("Parametro date = " + selectedDate);
+
+	    availableRides = facadeBL.getRides(selectedCity, selectedCity2, selectedDate);
+
+	    System.out.println("Rides encontrados = " + availableRides.size());
+	    return availableRides.toString()
+;
+	}
 
 
-    private BLFacade facadeBL;
 
-    private String selectedDepartCity;
-    private String selectedArrivalCity;
-    private Date selectedDate;
-
-    private List<String> departCities;
-    private List<String> arrivalCities;
-
-    private List<Ride> availableRides;
-
-    public QueryRidesBean() {
-    	System.out.print("QueryRidesBean kontructor");
-        facadeBL = FacadeBean.getBusinessLogic();
-        System.out.print("QueryRidesBean kontructor 2");
-        dCities();
-        System.out.print("QueryRidesBean kontructor3");
+	public QueryRidesBean() {
+		facadeBL = FacadeBean.getBusinessLogic(); 
+		cities = facadeBL.getDepartCities();
+		System.out.print(facadeBL.getDepartCities());
+	}
+	
+	public void updateArrivalCities() {
+        System.out.println("Selected depart city: " + selectedCity);
+        cities2 = facadeBL.getDestinationCities(selectedCity);
     }
-    public List<String> getDepartCities() {
-        return departCities;
-    }
-    public void dCities() {
-    	System.out.print("QueryRidesBean dCities");
-    	this.departCities = facadeBL.getDepartCities();
-    	System.out.print(departCities);
-    }
-    
-    /*public void aCities() {
-    	this.departCities = facadeBL.getDepartCities();
-    	System.out.print(arrivalCities);
-    }*/
+	
+	public List<String> getCities() {
+		return cities;
+	}
 
-    // ----- GETTERS DE DATOS -----
+	public String getSelectedCity() {
+		return selectedCity;
+	}
 
-    /*public List<String> getDepartCities() {
-        if (departCities == null) {
-            departCities = facadeBL.getDepartCities();
-        }
-        return departCities;
-    }
+	public void setSelectedCity(String selectedCity) {
+		this.selectedCity = selectedCity;
+	}
+	
+	public List<String> getCities2() {
+		return cities2;
+	}
 
-    public List<String> getArrivalCities() {
-        if (selectedDepartCity != null) {
-            arrivalCities = facadeBL.getDestinationCities(selectedDepartCity);
-        }
-        return arrivalCities;
-    }*/
+	public String getSelectedCity2() {
+		return selectedCity2;
+	}
 
-    // ----- EVENTOS -----
-
-   /* public void onDepartCityChange() {
-        if (selectedDepartCity != null) {
-            arrivalCities = facadeBL.getDestinationCities(selectedDepartCity);
-        }
-    }*/
-
-    // ----- ACCIÓN -----
-
-  /*  public String findRides() {
-        availableRides = facadeBL.getRides(selectedDepartCity, selectedArrivalCity, selectedDate);
-        return null;
-    }
-
-    // ----- GETTERS & SETTERS -----
-
-    public String getSelectedDepartCity() { return selectedDepartCity; }
-    public void setSelectedDepartCity(String selectedDepartCity) { this.selectedDepartCity = selectedDepartCity; }
-
-    public String getSelectedArrivalCity() { return selectedArrivalCity; }
-    public void setSelectedArrivalCity(String selectedArrivalCity) { this.selectedArrivalCity = selectedArrivalCity; }
-
-    public Date getSelectedDate() { return selectedDate; }
-    public void setSelectedDate(Date selectedDate) { this.selectedDate = selectedDate; }
-
-    public List<Ride> getAvailableRides() { return availableRides; }
-    public void setAvailableRides(List<Ride> availableRides) { this.availableRides = availableRides; }
-    */
+	public void setSelectedCity2(String selectedCity2) {
+		this.selectedCity2 = selectedCity2;
+	}
+	
+	
+	
 }
