@@ -38,14 +38,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/SI2_Rides24_JSF/src/main/resources/objectdb.jar">
+	<classpathentry kind="lib" path="objectdb.jar"/>
+	<classpathentry kind="lib" path="SI2_Rides24_JSF.jar"/>
+	<classpathentry kind="lib" path="/RidesJSF/rides.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="SI2_Rides24_JSF.jar">
-		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>

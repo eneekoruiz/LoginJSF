@@ -1,4 +1,4 @@
-package eredua.bean;
+package mybeans;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;

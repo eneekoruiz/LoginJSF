@@ -1,4 +1,4 @@
-package eredua.bean;
+package mybeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

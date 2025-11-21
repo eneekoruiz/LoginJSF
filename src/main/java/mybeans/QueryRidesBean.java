@@ -1,4 +1,4 @@
-package eredua.bean;
+package mybeans;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,12 +6,13 @@ import java.util.List;
 
 import org.omnifaces.cdi.ViewScoped;
 
+import businessLogic.BLFacade;
+import domain.Ride;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
-import businessLogic.BLFacade;
-import domain.Ride;
+
 
 @Named("qrBean")
 @ViewScoped
