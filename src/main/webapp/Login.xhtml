@@ -6,41 +6,62 @@
 
 <ui:composition template="/WEB-INF/facelets/templates/Txantiloia.xhtml">
 
-    <!-- Título de la pestaña -->
+    <!-- Título -->
     <ui:define name="izenburua">
-        Saioa Hasi
+        Saioa Hasi — Rides
     </ui:define>
 
-    <!-- Cuerpo principal -->
+    <!-- Contenido -->
     <ui:define name="gorputza">
 
-        <h:form id="loginForm">
+        <!-- Fondo animado -->
+        <div class="glow"></div>
 
-            <h2>Sartu zure datuak</h2>
+        <!-- Card -->
+        <div class="card">
 
-            <h:panelGrid columns="2" columnClasses="etiketa,eremua" style="margin-top:20px">
-
-                <!-- Izena -->
-                <h:outputLabel for="izen" value="Izena:" />
-                <h:inputText id="izen" value="#{login.izena}" required="true"/>
-
-                <!-- Pasahitza -->
-                <h:outputLabel for="pass" value="Pasahitza:" />
-                <h:inputSecret id="pass" redisplay="true"
-                               value="#{login.pasahitza}" required="true">
-                    <f:validateLongRange minimum="1" maximum="500" />
-                </h:inputSecret>
-                <h:message for="pass" style="color:red" />
-
-            </h:panelGrid>
-
-            <div style="margin-top:20px">
-                <h:commandButton value="Saioa hasi" action="#{login.egiaztatu}" />
+            <div class="header">
+                <div class="logo">R</div>
+                <h1>Saioa Hasi</h1>
+                <p>Sartu zure datuak</p>
             </div>
 
-            <h:messages style="color:blue;margin-top:10px" />
+            <h:form id="loginForm">
 
-        </h:form>
+                <!-- IZENA -->
+                <div class="field">
+                    <label for="izen">Izena</label>
+                    <h:inputText id="izen"
+                                 value="#{login.izena}"
+                                 styleClass="input"
+                                 required="true" />
+                    <h:message for="izen" styleClass="msg" />
+                </div>
+
+                <!-- PASAHITZA -->
+                <div class="field">
+                    <label for="pass">Pasahitza</label>
+                    <h:inputSecret id="pass"
+                                   value="#{login.pasahitza}"
+                                   styleClass="input"
+                                   redisplay="true"
+                                   required="true">
+                        <f:validateLength minimum="1" maximum="500" />
+                    </h:inputSecret>
+                    <h:message for="pass" styleClass="msg" />
+                </div>
+
+                <!-- BOTÓN -->
+                <h:commandButton value="Saioa hasi"
+                                 action="#{login.egiaztatu}"
+                                 styleClass="btn btn-primary" />
+
+                <!-- MENSAJES -->
+                <h:messages styleClass="msgs" />
+
+            </h:form>
+
+        </div>
 
     </ui:define>
 

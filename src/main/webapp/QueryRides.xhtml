@@ -5,148 +5,80 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Lista de Ciudades</title>
-    <style>
-        .form-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 30px;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .form-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 20px;
-        }
-        .form-label {
-            min-width: 180px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .form-field {
-            flex: 1;
-        }
-        .search-button {
-            margin-top: 20px;
-            padding: 10px 25px;
-            font-size: 14px;
-            font-weight: bold;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .search-button:hover {
-            background-color: #0056b3;
-        }
-        .calendar-container {
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: white;
-            display: inline-block;
-        }
-        .rides-table {
-            margin-top: 30px;
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .rides-table th, .rides-table td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #dee2e6;
-        }
-        .rides-table th {
-            background-color: #e9ecef;
-            font-weight: bold;
-        }
-        .empty-message {
-            color: red;
-            font-weight: bold;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
+    <title>Rides Bilatu</title>
+    <h:outputStylesheet library="css" name="ultra.css" />
 </h:head>
 
-<h:body>
-<div class="form-container">
-    <h2 style="font-size: 24px; margin-bottom: 25px; color: #333;">Buscar Rides</h2>
+<h:body class="body-bg">
 
-    <h:form>
+    <div class="glow"></div>
 
-        <!-- DEPARTING CITIES -->
-        <div class="form-row">
-            <div class="form-label">
-                <h:outputLabel value="Ciudad de salida:" for="cityCombo" />
-            </div>
-            <div class="form-field">
-                <h:selectOneMenu id="cityCombo" value="#{qrBean.selectedCity}" style="width:100%">
-                    <f:selectItem itemLabel="-----Aukeratu irteera hiria-----" itemValue="" />
-                    <f:selectItems value="#{qrBean.cities}" />
-                    <f:ajax listener="#{qrBean.updateArrivalCities}" render="cityCombo2" />
-                </h:selectOneMenu>
-            </div>
+    <div class="layout-container scroll-area">
+
+        <!-- Header -->
+        <div class="main-header">
+            <div class="logo-small">R</div>
+            <h1 class="app-title">Rides Bilatu</h1>
         </div>
 
-        <!-- ARRIVAL CITIES -->
-        <div class="form-row">
-            <div class="form-label">
-                <h:outputLabel value="Ciudad de destino:" for="cityCombo2" />
-            </div>
-            <div class="form-field">
-                <h:selectOneMenu id="cityCombo2" value="#{qrBean.selectedCity2}" style="width:100%">
-                    <f:selectItem itemLabel="-----Aukeratu helmuga hiria-----" itemValue="" />
-                    <f:selectItems value="#{qrBean.cities2}" />
-                </h:selectOneMenu>
-            </div>
-        </div>
+        <h:form styleClass="form">
 
-        <!-- CALENDAR -->
-        <div class="form-row">
-            <div class="form-label">
-                <h:outputLabel value="Fecha:" for="data" />
-            </div>
-            <div class="form-field calendar-container">
-                <p:calendar id="data" value="#{qrBean.selectedDate}" navigator="false" mode="inline" />
-            </div>
-        </div>
+            <div class="card page-columns">
 
-        <!-- BUTTON -->
-        <div class="form-row">
-            <div class="form-label"></div>
-            <div class="form-field">
-                <h:commandButton value="Buscar rides" action="#{qrBean.findRides}" styleClass="search-button" update="@form"/>
+                <!-- Izquierda: Formularioa + Calendar -->
+                <div>
+                    <!-- CIUDAD DE SALIDA -->
+                    <div class="field">
+                        <label for="cityCombo">Irteera hiri:</label>
+                        <h:selectOneMenu id="cityCombo" value="#{qrBean.selectedCity}" styleClass="input">
+                            <f:selectItem itemLabel="-----Aukeratu irteera hiria-----" itemValue="" />
+                            <f:selectItems value="#{qrBean.cities}" />
+                            <f:ajax listener="#{qrBean.updateArrivalCities}" render="cityCombo2" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <!-- CIUDAD DE DESTINO -->
+                    <div class="field">
+                        <label for="cityCombo2">Helmuga hiri:</label>
+                        <h:selectOneMenu id="cityCombo2" value="#{qrBean.selectedCity2}" styleClass="input">
+                            <f:selectItem itemLabel="-----Aukeratu helmuga hiria-----" itemValue="" />
+                            <f:selectItems value="#{qrBean.cities2}" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <!-- FECHA -->
+				<div class="field calendar-container">
+				    <label for="data">Data:</label>
+				    <p:calendar id="data" value="#{qrBean.selectedDate}" navigator="false" mode="popup" style="width:100%">
+				        <!-- Cuando cambie la fecha, ejecuta findRides y actualiza todo el formulario -->
+				        <p:ajax event="dateSelect" listener="#{qrBean.findRides}" update="@form" />
+				    </p:calendar>
+				</div>
+
+
+                    <!-- BOTÓN BUSCAR -->
+                    <div class="field">
+                        <h:commandButton value="Bilatu rides" action="#{qrBean.findRides}" styleClass="btn btn-primary" update="@form"/>
+                    </div>
+                </div>
+
+                <!-- Derecha: Tabla de rides -->
+                <div>
+                    <p:dataTable id="ridesTable" value="#{qrBean.availableRides}" var="r" styleClass="rides-table" emptyMessage="Ez dago bidairik" style="width:100%">
+                        <p:column headerText="Nontik">#{r.from}</p:column>
+                        <p:column headerText="Nora">#{r.to}</p:column>
+                        <p:column headerText="Data">#{r.date}</p:column>
+                        <p:column headerText="Prezioa">#{r.price}</p:column>
+                    </p:dataTable>
+
+                    <h:commandButton value="Itxi" action="back" styleClass="btn btn-secondary" style="margin-top:10px; width:100%" />
+                </div>
+
             </div>
-        </div>
 
-        <!-- TABLE -->
-        <p:dataTable id="ridesTable" value="#{qrBean.availableRides}" var="r" styleClass="rides-table" emptyMessage="Ez dago bidairik">
-            <p:column headerText="From">
-                #{r.from}
-            </p:column>
-            <p:column headerText="To">
-                #{r.to}
-            </p:column>
-            <p:column headerText="Date">
-                #{r.date}
-            </p:column>
-            <p:column headerText="Price">
-                #{r.price}
-            </p:column>
-        </p:dataTable>
-        
-        <p:commandButton value="Close" 
-                 action="back" 
-                 styleClass="create-button" />
+        </h:form>
 
-    </h:form>
-</div>
+    </div>
+
 </h:body>
 </html>

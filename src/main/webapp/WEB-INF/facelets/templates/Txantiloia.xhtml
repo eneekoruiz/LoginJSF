@@ -1,31 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html;" />
-	<link rel="stylesheet" type="text/css" href="estiloa.css" />
-	<title><ui:insert name="izenburua">Titulua definitzeke...</ui:insert></title>
+    <meta charset="UTF-8" />
+    <title><ui:insert name="izenburua">Rides</ui:insert></title>
+
+    <!-- Hoja de estilos global (ULTRA.CSS) -->
+    <h:outputStylesheet library="css" name="ultra.css" />
 </h:head>
-<h:body>
-	<h1 align="center">
-		<img
-			src="http://www.ehu.eus/documents/340468/5849813/Biling%C3%BCe_positivo_baja.jpg"
-			width="500" height="70" />
-	</h1>
-	<h:panelGrid columns="2" align="center" border="3" cellpadding="10"
-		cellspacing="1">
-		<h:panelGrid columns="1"
-			style="background-color: lightblue; color: blue">
-			<ui:include src="Menua.xhtml" />
-		</h:panelGrid>
-		<h:panelGrid columns="1">
-			<ui:insert name="gorputza">Eraikitzen...</ui:insert>
-		</h:panelGrid>
-	</h:panelGrid>
-	<ui:insert name="orri-oina">
-		<h4 style="color: blue;" align="center">&#169; Software Ingeniaritza II</h4>
-	</ui:insert>
+
+<h:body class="body-bg">
+
+    <!-- Efecto de luz -->
+    <div class="glow"></div>
+
+    <!-- Contenedor general centrado -->
+    <div class="layout-container">
+
+        <!-- Header superior con logo -->
+        <header class="main-header">
+            <div class="logo-small">R</div>
+            <h2 class="app-title">Rides</h2>
+        </header>
+
+        <!-- Contenido dinámico -->
+        <main class="content-slot">
+            <ui:insert name="gorputza">Eduki gabe...</ui:insert>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <ui:insert name="orri-oina">
+                <p>© Software Ingeniaritza II</p>
+            </ui:insert>
+        </footer>
+
+    </div>
+
 </h:body>
 </html>

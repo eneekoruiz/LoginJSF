@@ -198,3 +198,137 @@
     .input { font-size: 14px; padding: 10px 12px; }
     .btn { font-size: 15px; padding: 10px; }
 }
+
+/* ======= LAYOUT GLOBAL PARA LA PLANTILLA ======= */
+
+.layout-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-small {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 10px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #62bbff, #3d8fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 26px;
+    color: #061322;
+    box-shadow: 0 8px 18px rgba(62,150,255,0.3);
+}
+
+.app-title {
+    color: #eef6ff;
+    font-size: 22px;
+    margin: 0;
+}
+
+.content-slot {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #b6c9e7;
+    font-size: 14px;
+}
+
+/* ====== EXTRAS PARA PRIMEFACES EN ULTRA.css ====== */
+
+.form .ui-inputtext,
+.form .ui-inputnumber input {
+    width: 100% !important;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ecf3ff;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form .ui-inputtext:focus,
+.form .ui-inputnumber input:focus {
+    border-color: #62bbff;
+    box-shadow: 0 0 12px rgba(98,187,255,0.35);
+    outline: none;
+}
+
+/* Calendario PrimeFaces inline */
+.ui-datepicker-inline {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    color: #ecf3ff !important;
+}
+
+.ui-datepicker-header {
+    background: rgba(255,255,255,0.08) !important;
+    border: none !important;
+    color: #ecf3ff !important;
+}
+
+.ui-state-default {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 6px !important;
+    color: #ecf3ff !important;
+}
+
+.ui-state-hover {
+    background: rgba(255,255,255,0.2) !important;
+}
+
+.ui-state-active {
+    background: #62bbff !important;
+    color: #061322 !important;
+    font-weight: bold !important;
+}
+
+/* ===== SCROLL PARA CONTENIDO LARGO ===== */
+.scroll-area {
+    max-height: 78vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Scroll fino y elegante */
+.scroll-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+
+.page-columns {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
