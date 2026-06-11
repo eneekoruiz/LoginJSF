@@ -1,4 +1,4 @@
-# RidesJSF
+# LoginJSF
 
 Introductory ride-sharing web application built with JSF, CDI, and Maven.
 
@@ -11,4 +11,4 @@ Introductory ride-sharing web application built with JSF, CDI, and Maven.
 
 ## Links
 
-- DeepWiki: https://deepwiki.com/eneekoruiz/RidesJSF
+- DeepWiki: https://deepwiki.com/eneekoruiz/LoginJSF
