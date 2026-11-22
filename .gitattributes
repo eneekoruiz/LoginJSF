@@ -1,0 +1,3 @@
+# Vendor webapp templates to ensure GitHub classifies the repository as Java
+src/main/webapp/** linguist-vendored
+*.xhtml linguist-detectable=false

@@ -1,14 +1,28 @@
-# LoginJSF
+# LoginJSF · Autenticación y Persistencia ObjectDB
 
-Introductory ride-sharing web application built with JSF, CDI, and Maven.
+Aplicación web académica desarrollada con Java, Jakarta Server Faces (JSF) y persistencia nativa orientada a objetos mediante ObjectDB.
 
-## What it covers
+- **Documentación de arquitectura:** [DeepWiki - LoginJSF](https://deepwiki.com/eneekoruiz/LoginJSF)
 
-- registration and authentication
-- ride search and publishing
-- JSF views with managed beans
-- ObjectDB persistence
+## Arquitectura y Decisiones de Diseño
 
-## Architecture
+- **Persistencia Orientada a Objetos:** Utiliza ObjectDB como motor de base de datos orientado a objetos, almacenando directamente instancias Java y sus relaciones sin necesidad de transformaciones relacionales complejas.
+- **Ciclo de Vida JSF:** Manejo del ciclo de vida de peticiones Jakarta Faces, navegación declarativa mediante `faces-config.xml` y enlaces de datos bidireccionales con Managed Beans.
+- **Validación de Formularios:** Validadores integrados en vistas XHTML para comprobación de credenciales y feedback interactivo al usuario.
 
-JSF views submit actions to backing beans, which delegate ride and account operations to the business layer. ObjectDB provides persistence behind that layer, keeping database access out of the XHTML pages.
+## Stack Técnico
+
+- **Lenguaje:** Java 17+
+- **Tecnología Web:** JSF (Jakarta Faces)
+- **Base de Datos:** ObjectDB
+- **Gestión:** Apache Maven
+
+## Puesta en Marcha Local
+
+```bash
+git clone https://github.com/eneekoruiz/LoginJSF.git
+cd LoginJSF
+
+# Compilar y empaquetar WAR
+mvn clean package
+```
